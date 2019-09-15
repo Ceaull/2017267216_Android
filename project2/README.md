@@ -1,6 +1,5 @@
 # 在AS当中导入别人的项目
 从github上下载郭霖的代码
-
 将HelloWorld程序导入AS当中
 
 ![image](https://github.com/Ceaull/2017267216_android/blob/master/project2/images/1.PNG)
