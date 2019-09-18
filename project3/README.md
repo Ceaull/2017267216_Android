@@ -4,4 +4,4 @@
 
 2. 在Hello1和Hello2中都添加onClickListener接口
 
- public class Hello1 extends AppCompatActivity implements View.OnClickListener
+  public class Hello1 extends AppCompatActivity implements View.OnClickListener
