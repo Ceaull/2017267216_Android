@@ -7,17 +7,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class Hello2 extends AppCompatActivity implements View.OnClickListener{
+public class Hello3 extends AppCompatActivity implements View.OnClickListener{
 
-    private static final String TAG = "Hello2";
+    private static final String TAG = "Hello3";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hello2);
+        setContentView(R.layout.activity_hello3);
         Log.d(TAG, "onCreate execute");
-        settupClicks1();
+        settupClicks2();
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -59,20 +59,19 @@ public class Hello2 extends AppCompatActivity implements View.OnClickListener{
         Button b;
         Intent intent;
         if(v.getId()==R.id.btToHello1){
-            intent=new Intent(Hello2.this,Hello1.class);
+            intent=new Intent(Hello3.this,Hello1.class);
             startActivity(intent);
         }
         if(v.getId()==R.id.btToHello2){
-            intent=new Intent(Hello2.this,Hello2.class);
+            intent=new Intent(Hello3.this,Hello2.class);
             startActivity(intent);
         }
         if(v.getId()==R.id.btToHello3){
-            intent=new Intent(Hello2.this,Hello3.class);
+            intent=new Intent(Hello3.this,Hello3.class);
             startActivity(intent);
         }
-
     }
-    private void settupClicks1(){
+    private void settupClicks2(){
         Button b;
         b=(Button)findViewById(R.id.btToHello1);
         b.setOnClickListener(this);
