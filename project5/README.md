@@ -8,7 +8,7 @@
 
 ![images](https://github.com/Ceaull/2017267216_android/blob/master/project5/images/2.PNG)
 
-3.结果如图所示
+3.运行程序，点击按钮后，运行结果如图所示
   
 ![调用跳转到指定网页](https://github.com/Ceaull/2017267216_android/blob/master/project5/images/3.1.PNG)
 
