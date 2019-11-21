@@ -18,7 +18,7 @@
   
 ![调用地图](https://github.com/Ceaull/2017267216_android/blob/master/project5/images/3.3.PNG)
 
-、、、
+···
 private int id;
-    private String content;
-、、、
+private String content;
+···
