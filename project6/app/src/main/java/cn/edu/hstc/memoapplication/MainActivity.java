@@ -1,4 +1,4 @@
-package cn.edu.hstc.myapplication;
+package cn.edu.hstc.memoapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -14,33 +14,28 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends ListActivity {
-    //private ListView lv_main;
-    private PhoneNumberAdapter adapter;
-    private PhoneNumberDao dao;
-    private List<PhoneNumber> data;
+    private MemoAdapter adapter;
+    private MemoDao dao;
+    private List<Memo> data;
     private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //lv_main=getListView();
-        adapter=new PhoneNumberAdapter();
-        dao=new PhoneNumberDao(this);
+        adapter=new MemoAdapter();
+        dao=new MemoDao(this);
         data=dao.getAll();
         //lv_main.setAdapter(adapter);
         setListAdapter(adapter);
         //给listView设置创建contextMenu的监听
         getListView().setOnCreateContextMenuListener(this);
     }
-
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -55,14 +50,14 @@ public class MainActivity extends ListActivity {
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         //得到对应PhoneNumber对象
-        PhoneNumber phoneNumber=data.get(position);
+        Memo memo=data.get(position);
         switch (item.getItemId()){
             case 1://更新
-                showUpdateDialog(phoneNumber);
+                showUpdateDialog(memo);
                 break;
             case 2://删除
                 //1.删除数据表对应的数据
-                dao.deleteById(phoneNumber.getId());
+                dao.deleteById(memo.getId());
                 //2.删除List对应的数据
                 data.remove(position);
                 //3.通知更新列表
@@ -76,22 +71,22 @@ public class MainActivity extends ListActivity {
 
     /**
      * 显示更新的Dialog
-     * @param phoneNumber
+     * @param memo
      */
-    private void showUpdateDialog(final PhoneNumber phoneNumber){
+    private void showUpdateDialog(final Memo memo){
         final EditText editText=new EditText(this);
-        editText.setHint(phoneNumber.getNumber());
+        editText.setHint(memo.getContent());
         new AlertDialog.Builder(this)
-                .setTitle("更新黑名单")
+                .setTitle("更新内容")
                 .setView(editText)
                 .setPositiveButton("更新", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //1.保存数据表中
                         String newNumber=editText.getText().toString();
-                        phoneNumber.setNumber(newNumber);
+                        memo.setContent(newNumber);
                         //2.更新数据表对应的数据
-                        dao.update(phoneNumber);
+                        dao.update(memo);
                         //3.通知更新列表
                         adapter.notifyDataSetChanged();
                     }
@@ -103,25 +98,25 @@ public class MainActivity extends ListActivity {
     public void add(View v){
         //1.显示添加的dialog（带输入框）
         final EditText editText=new EditText(this);
-        editText.setHint("输入电话号码");
+        editText.setHint("输入内容");
         new AlertDialog.Builder(this)
-                .setTitle("添加电话号码")
+                .setTitle("添加内容")
                 .setView(editText)
                 .setPositiveButton("添加", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                         //1.保存数据表中
-                        String number=editText.getText().toString();
+                        String content=editText.getText().toString();
                         //PhoneNumber phoneNumber=new PhoneNumber();
-                        PhoneNumber phoneNumber=null;
-                        phoneNumber=new PhoneNumber();
-                        phoneNumber.setId(-1);
-                        phoneNumber.setNumber(number);
+                        Memo memo=null;
+                        memo=new Memo();
+                        memo.setId(-1);
+                        memo.setContent(content);
                         //list.add(phoneNumber);
-                        dao.add(phoneNumber);
+                        dao.add(memo);
                         //2.保存数据到List
-                        data.add(0,phoneNumber);
+                        data.add(0,memo);
                         //3.通知更新列表
                         adapter.notifyDataSetChanged();
                     }
@@ -129,7 +124,7 @@ public class MainActivity extends ListActivity {
                 .setNegativeButton("取消",null)
                 .show();
     }
-    class PhoneNumberAdapter extends BaseAdapter {
+    class MemoAdapter extends BaseAdapter {
         @Override
         public int getCount() {
             return data.size();
@@ -150,9 +145,9 @@ public class MainActivity extends ListActivity {
             if (convertView==null) {
                 convertView = View.inflate(MainActivity.this, android.R.layout.simple_list_item_1, null);
             }
-            PhoneNumber phoneNumber=data.get(position);
+            Memo memo=data.get(position);
             TextView textView=(TextView) convertView.findViewById(android.R.id.text1);
-            textView.setText(phoneNumber.getNumber());
+            textView.setText(memo.getContent());
             return convertView;
         }
     }

@@ -1,4 +1,4 @@
-package cn.edu.hstc.myapplication;
+package cn.edu.hstc.memoapplication;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("cn.edu.hstc.myapplication", appContext.getPackageName());
+        assertEquals("cn.edu.hstc.memoapplication", appContext.getPackageName());
     }
 }

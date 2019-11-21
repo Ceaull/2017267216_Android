@@ -1,4 +1,4 @@
-package cn.edu.hstc.myapplication;
+package cn.edu.hstc.memoapplication;
 
 import org.junit.Test;
 
