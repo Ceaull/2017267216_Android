@@ -8,7 +8,7 @@
 
 2. 点击开始增加按钮后,每一秒累加次数加一，十秒后程序自动暂停
 
-![images]https://github.com/Ceaull/2017267216_android/tree/master/project7/images/2.PNG)
+![images]（https://github.com/Ceaull/2017267216_android/tree/master/project7/images/2.PNG)
 
 ## 代码显示
 
