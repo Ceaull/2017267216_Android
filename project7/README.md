@@ -48,7 +48,7 @@
 ```
 2、MainActivity.java
 ```
-package cn.edu.hstc.pro7;
+package cn.edu.hstc.project7;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
